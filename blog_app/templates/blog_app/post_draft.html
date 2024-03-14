@@ -1,0 +1,10 @@
+{% extends 'blog_app/base.html' %}
+{% load static %}
+{% block body_block %}
+    {% for post in posts %}
+        <p class="date">Created: {{ post.created_date|date:'d-m-Y' }}</p>
+        <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+        <p>{{ post.text|truncatechars:200 }}</p>
+    {% endfor %}
+    <h1>BUH</h1>
+{% endblock %}

@@ -46,6 +46,7 @@ class DraftListView(LoginRequiredMixin,ListView):
     template_name = "post_draft.html"
     login_url = '/login/'
     redirect_field_name = "blog_app/home.html"
+    context_object_name = "posts"
     
     def get_queryset(self):
         return Post.objects.filter(published_date__isnull=True).order_by('created_date')
@@ -84,3 +85,7 @@ def remove_comment(request,pk):
     post_pk =  comment.post.pk
     comment.delete()
     return redirect('post_detail',pk=post_pk)
+
+@login_required
+def custom_logout_view(request,pk):
+    pass
